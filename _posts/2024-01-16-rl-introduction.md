@@ -112,6 +112,8 @@ Let's take a $10 \times 10$ gridworld as an example environment. The agent $\col
 
 ![gridworld10x10](../assets/images/gridworld_10x10.png)
 
+<img src="../assets/images/gridworld_10x10.png" />
+
 ### Random Action Selection 
 
 The most trivial and dumb way for the agent $\color{RoyalBlue}{A}$ to reach the goal state $\color{ForestGreen}{G}$ is to always choose a random action. Performing $5$ episodes this leads to the following distribution of rewards per action. The maximal number of timesteps has been set to $10,000$. 
