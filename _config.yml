@@ -1,0 +1,23 @@
+title: Clem's Log
+name: "Clem's Logs"
+author: Clem
+baseurl: "/clem-log"
+description: Learning notes.
+profile_url: "https://peetekeesel.github.io"
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+excerpt_separator: <!--more-->
+plugins:
+  - jekyll-feed
+  - jekyll-archives
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  # - vendor
+kramdown:
+  input: GFM
+  auto_ids: true
+  syntax_highlighter: rouge
+  toc_levels: 1..4
