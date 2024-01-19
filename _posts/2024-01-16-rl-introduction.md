@@ -105,13 +105,43 @@ $$
 \end{align*}
 $$
 
-It is interesting to investigate the distribution of occurences of each action $a$ over a whole episode. 
 
+## GridWorld Example
 
+Let's take a $10 \times 10$ gridworld as an example environment. The agent $\color{RoyalBlue}{A}$ starts in the upper left corner (position $(0,0)$). The goal state $\color{ForestGreen}{G}$ is in $(5,5)$. All $\color{Red}{\text{Red}}$ states give the agent a negative reward of $-1$. All other states, except the goal state, give the agent a neutral reward of $0$. The goal state gives the agent a positive reward of $+1$. Note that $\color{grey}{\text{grey}}$ states are walls, thus, positions onto which the agent can't walk. 
 
-Additonally we can look at the reward distribution per action.
+![gridworld10x10](../assets/images/gridworld_10x10.png)
 
+### Random Action Selection 
 
+The most trivial and dumb way for the agent $\color{RoyalBlue}{A}$ to reach the goal state $\color{ForestGreen}{G}$ is to always choose a random action. Performing $5$ episodes this leads to the following distribution of rewards per action. The maximal number of timesteps has been set to $10,000$. 
+
+![rdmActionSelection](../assets/images/rdm_action_selection__violin_plot.png)
+
+Since the agent $\color{RoyalBlue}{A}$ isn't learning anything the only patterns we can observe is that there are basically never positive rewards for the action _up_ ($0$) and _down_ ($2$).
+
+The following shows the number of timesteps needed to reach the goal state $\color{ForestGreen}{G}$ as well as the cumulative reward `Sum(R)` obtained over all these timesteps. 
+
+```
+Episode: 0 -> Successfully finished after 179 steps. Sum(R): -9
+Episode: 1 -> Successfully finished after 35  steps. Sum(R): -1
+Episode: 2 -> Successfully finished after 327 steps. Sum(R): -17
+Episode: 3 -> Successfully finished after 604 steps. Sum(R): -17
+Episode: 4 -> Successfully finished after 442 steps. Sum(R): -16
+Episode: 5 -> Successfully finished after 396 steps. Sum(R): -1
+Episode: 6 -> Successfully finished after 393 steps. Sum(R): -12
+Episode: 7 -> Successfully finished after 260 steps. Sum(R): -1
+Episode: 8 -> Successfully finished after 265 steps. Sum(R): -2
+Episode: 9 -> Successfully finished after 126 steps. Sum(R): -1
+```
+
+Every episode finished before the maximal number of timesteps has been reached. Thus, even though choosing randomly and not _learning_ anything, the agent essentially finds the goal state when walking around long enough. 
+
+> Using _random action selection_, it took the agent on average $303 \pm 158$ steps to reach the goal when with an average cumulative reward of $-30.80 \pm 27.54$. 
+
+### Greedy Action Selection
+
+The most trivial method to let the agent _learn_ 
 
 - [ ] Add violin plot with x axis (Action) and y axis (Reward distribution)
 - [ ] Show different plots for each episode
