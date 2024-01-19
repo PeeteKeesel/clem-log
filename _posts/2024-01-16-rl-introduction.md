@@ -112,7 +112,7 @@ Let's take a $10 \times 10$ gridworld as an example environment. The agent $\col
 
 ![gridworld10x10](../assets/images/gridworld_10x10.png)
 
-<img src="../assets/images/gridworld_10x10.png" />
+![gridworld10x10]({{ site.baseurl }}/assets/images/gridworld_10x10.png)
 
 ### Random Action Selection 
 
