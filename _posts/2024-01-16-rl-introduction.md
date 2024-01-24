@@ -139,6 +139,33 @@ Every episode finished before the maximal number of timesteps has been reached. 
 
 > Using _random action selection_, it took the agent on average $303 \pm 158$ steps to reach the goal when with an average cumulative reward of $-30.80 \pm 27.54$. 
 
+### Value Iteration
+
+$$
+\begin{align*}
+
+& \text{Input:} \; \text{MDP} \; M = < S, s_0, A, P_a(s', s), r(s,a,s') > \\
+& \text{Output:} \; \text{Value function} \; V \\ 
+\\ 
+& \text{Set} \; V \; \text{to arbitrary value function; e.g.} \; V(s)=0 \; \text{for all} \; s \\ 
+\\ 
+& \text{Repeat} \\ 
+& \qquad \Delta \leftarrow 0 \\ 
+& \qquad \text{For each} \; s \in S \\ 
+& \qquad \qquad V'(s) \leftarrow \max_{a \in A(s)} \sum_{s' \in S} P_a(s' | s) [ r(s,a,s') + \gamma V(s') ] \\ 
+& \qquad \qquad \Delta \leftarrow \max(\Delta , | V'(s) - V(s)) \\ 
+& \qquad V \leftarrow V' \\ 
+& \text{Until} \; \Delta \leq \theta
+
+\end{align*}
+$$
+
+#### Learnings
+
+- When the agent $\color{RoyalBlue}{A}$ is in the goal state $\color{ForestGreen}{G}$ no $V(s')$ needs to be included in the value update. Thus it will always have the value of it's own reward.
+- Then updating the value function use `copy` otherwise it will referr to the same object and thus use already the new value estimates.
+- Since Value Iteration is a _model-based_ method the episodes will be run _after_ the value iteration algorithm has been run and the policy has been derived.
+
 ### Greedy Action Selection
 
 The most trivial method to let the agent _learn_ 
