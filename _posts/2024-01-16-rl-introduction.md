@@ -166,7 +166,7 @@ Note that for the $10 \times 10$ GridWorld from my example, there is no randomne
 
 The following shows the initial GridWorld with the initial (random) policy on the left and the derived policy from value iteration (after $19$ iterations) on the right. 
 
-| ![Initial GridWorld](https://github.com/PeeteKeesel/clem-log/blob/main/assets/images/grid_world_initial.png) | ![GridWorld after value iteration converged](https://github.com/PeeteKeesel/clem-log/blob/main/assets/images/grid_world_after_vi_converged.png) |
+| ![InitialGridWorld]({{ site.baseurl }}/assets/images/grid_world_initial.png) | ![GridWorldAfterValueIterationConverged]({{ site.baseurl }}/assets/images/grid_world_after_vi_converged.png) |
 |:--:| :--:| 
 | Initial GridWorld before running value iteration. | GridWorld with the extracted policy after value iteration converged after $19$ iterations. |
 
