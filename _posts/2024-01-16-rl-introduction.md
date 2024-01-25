@@ -160,6 +160,16 @@ $$
 \end{align*}
 $$
 
+> Using _value iteration_, it the the agent only $19$ iterations to converge (meaning $\Delta \leq \theta$, with $\theta=0.001$). 
+
+Note that for the $10 \times 10$ GridWorld from my example, there is no randomness in the transitions. Meaning, let's say the agent $\color{RoyalBlue}{A}$ is in state $(3,3)$ and takes the action $down$, then $\color{RoyalBlue}{A}$ will definitely land in state $(4,3)$. This is because in this GridWorld $P_a(s' | s)=1$ for all $s \in \mathcal{S}$.
+
+The following shows the initial GridWorld with the initial (random) policy on the left and the derived policy from value iteration (after $19$ iterations) on the right. 
+
+| ![Initial GridWorld](https://github.com/PeeteKeesel/clem-log/blob/main/assets/images/grid_world_initial.png) | ![GridWorld after value iteration converged](https://github.com/PeeteKeesel/clem-log/blob/main/assets/images/grid_world_after_vi_converged.png) |
+|:--:| :--:| 
+| Initial GridWorld before running value iteration. | GridWorld with the extracted policy after value iteration converged after $19$ iterations. |
+
 #### Learnings
 
 - When the agent $\color{RoyalBlue}{A}$ is in the goal state $\color{ForestGreen}{G}$ no $V(s')$ needs to be included in the value update. Thus it will always have the value of it's own reward.
