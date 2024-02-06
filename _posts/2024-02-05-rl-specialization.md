@@ -7,9 +7,9 @@ tags: reinforcement-learning
 # toc: true
 ---
 
-# 1. Course 1️⃣ - Fundamentals of Reinforcement Learning
+This page contains summaries and personal notes obtained during my studying for the [Reinforcement Learning Specializations](https://www.coursera.org/specializations/reinforcement-learning) from the [University of Alberta](https://www.ualberta.ca/index.html) on [Coursera](https://www.coursera.org/). Note that some of the content is completely taken from the course and therefore the credit goes to the University of Alberta and Coursera. 
 
-This chapter will contain the learnings from the materical of course 1️⃣. This will contain the summaries of each video of the specialization. Note that these summaries are completely the content of the [University of Alberta](https://www.ualberta.ca/index.html) and [Coursera](https://www.coursera.org/). Thus, all the credit goes to them. This page should simply hold as a reference point for interested learners to quickly come back to the learned content.
+# 1. Course 1️⃣ - Fundamentals of Reinforcement Learning
 
 ## 1.1. Week 🕐
 
@@ -124,6 +124,22 @@ $$
 - _MDPs_ provide a general framework for sequential decision making
 - The __dynamics__ of an MDP are defined by a probability distribution
 
+<u>Markov property</u>
+
+For a stochastic process, given a sequence of states $S_1, \dots, S_n$, the probability of transitioning to the next state $S_{n+1}$ depends only on the current state $S_n$ and not on the sequence of states that led to $S_n$. 
+
+$$
+\begin{align*}
+    \mathbb{P}(S_{n+1} | \underbrace{S_n, S_{n-1}, \dots, S_1}_{\text{Entire history up to} \, S_n}) = \mathbb{P}(S_{n+1} | S_n)
+\end{align*}
+$$
+
+where $\mathbb{P}(S_{n+1} | S_n))$ is the probability of moving to state $S_{n+1}$ given the current state $S_n$. 
+
+- States that the future state of a process depends only on the current state and not on the sequence of events that preceded it
+- Posits that the _future is independent of the past_, given the present
+- Does not mean that the state representation tells all that would be useful to know, only that it has not forgotten anything that would be useful to know
+
 ### 1.2.2. The Goal of Reinforcement Learning
 
 - The __goal of an agent__ is to __maximize the expected return__
@@ -203,6 +219,17 @@ $$
 - Idea is that immediate rewards contribute more to the sum
 - If $\gamma = 0$: (_Short-sighted agent_) Agent only cared about the immediate reward. $G_t = R_{t+1}$
 - If $\gamma = 1$: (_Far-sighted agent_) Agent takes future rewards into account more strongly. $G_t = R_{t+1} + \gamma G_{t+1}$
+
+Remember that the sum of an infinite geometric series is defined as: 
+
+$$
+\begin{align*}
+    a + ar + ar^2 + ar^3 + \cdots \\
+    S = \sum_{n=1}^{\infty} ar^{n-1} = \frac{a}{1-r}
+\end{align*}
+$$ 
+
+where $a$ is the start term and $r$ is the common ratio. The common ratio is a value for which the values in a series gets consistently multiplied by [[Wikipedia, Infinite Geometric Series](https://www.idealminischool.ca/idealpedia/index.php/Infinite_Geometric_Series#:~:text=The%20general%20formula%20for%20finding,r%20is%20the%20common%20ratio.)].
 
 ## 1.3. Week 🕒
 
