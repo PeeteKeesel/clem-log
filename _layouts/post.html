@@ -35,6 +35,10 @@ layout: default
   </header>
 
   <div class="post-content" itemprop="articleBody">
+    {% if page.toc %}
+      * TOC
+      {:toc}
+    {% endif %}
     {{ content }}
   </div>
 
