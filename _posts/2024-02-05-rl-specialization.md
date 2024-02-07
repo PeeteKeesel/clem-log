@@ -208,7 +208,7 @@ $$
 
 $$
 \begin{align*}
-    G_t &\dot{=} R_{t+1} + \color{Violet}{\gamma} R_{t+2} + \color{Violet}{\gamma^2} R_{t+3} + \cdots + \color{Violet}{\gamma^{k-1}} R_{t+k} + \cdots \\
+    G_t &\dot{=} R_{t+1} + \color{Blue}{\gamma} R_{t+2} + \color{Blue}{\gamma^2} R_{t+3} + \cdots + \color{Blue}{\gamma^{k-1}} R_{t+k} + \cdots \\
         &= \sum_{k=0}^{\infty} \gamma^k R_{t+k+1}
 \end{align*}
 $$ 
@@ -232,5 +232,44 @@ $$
 where $a$ is the start term and $r$ is the common ratio. The common ratio is a value for which the values in a series gets consistently multiplied by [[Wikipedia, Infinite Geometric Series](https://www.idealminischool.ca/idealpedia/index.php/Infinite_Geometric_Series#:~:text=The%20general%20formula%20for%20finding,r%20is%20the%20common%20ratio.)].
 
 ## 1.3. Week 🕒
+
+<u>Summary</u>
+
+- __Policies__ tell an agent how to behave in their environment
+  - _Deterministic_ policies: Map a state to an action
+    - $s \xrightarrow{\pi} a$
+    - Choose an action with $\pi (a)$
+  - _Stochastic_ policies: Map a state to a distribution of actions over all possible actions
+    - $s \xrightarrow{\pi} \Delta (a)$
+    - Choose an action with $\pi(a | s)$
+  - A policy depends only on the __current state__. Not on e.g. time or previous states. This is a restriction on the state, not the agent. 
+    - > Thus, the state should provide the agent with all the information it needs to make a good decision.
+- __Value functions__ estimate future return (= total reward) under a specific policy.
+  - Simplify things by aggregating many possible future returns into a single number
+  - _State-value_ functions: 
+    - $v_{\color{Blue}{\pi}}(\color{Red}{s}) \dot{=} \mathbb{E}_{\color{Blue}{\pi}}[ \color{Green}{G_t} | \color{Red}{S_t = s} ]$
+    - Expected return from current state $s$, if the agent follows $\pi$ afterwards.
+  - _Action-value_ functions: 
+    - $q_{\color{Blue}{\pi}}(\color{Red}{s}, \color{Red}{a}) \dot{=} \mathbb{E}_{\color{Blue}{\pi}}[ \color{Green}{G_t} | \color{Red}{S_t = s}, \color{Red}{A_t = a} ]$
+    - Expected return from state $s$ if the agent first selects $a$ and then follows $\pi$ afterwards
+- __Bellmann equations__ define a relationship between the value of a state, or state-action pair, and its possible successor states
+  - Bellmann equation for the _state-value_ function: 
+    - $v_{\pi}(s) = \sum_{a}\pi(s | a) \sum_{s'}\sum_{r} p(s',r | s,a) [r + \gamma v_{\pi}(s')]$ 
+  - Bellmann equation for the _state-action_ function:
+    - $q_{\pi}(s, a) = \sum_{s'}\sum_{r} p(s',r | s,a) [r + \gamma \sum_{a'} \pi(a' | s') q_{\pi}(s', a')]$
+  - Can be directly used to find the value function
+  - Help us evaluate policies
+  - But, they can't find a policy that attains as much reward as possible
+- __The ultimate goal__: to find a policy that obtains as much reward as possible
+  - __Optimal policy__: achieves the highest value possible in every state
+    - There is always $\geq 1$ optimal policies
+    - _Optimal state-value function_ $v_*$: highest possible value in every state
+      - $v_{\pi_*}(s) = \max_{\pi} v_{\pi}(s)$
+      - every optimal policy shares the same optimal state-value function
+    - _Optimal action-value function_ $q_*$:
+      - $q_{\pi_*}(s,a) = max_{\pi} q_{\pi}(s,a) \; \text{for all} \; s \in \mathcal{S} \; \text{and} \; a \in \mathcal{A}$ 
+    - __Optimal Bellmann equations__
+      - $v_{\pi_*}(s) = max_a \sum_{s'}\sum_{r} p(s',r | s,a) [r + \gamma v_*(s')]$ 
+      - $q_{\pi_*}(s, a) = \sum_{s'}\sum_{r} p(s',r | s,a) [r + \gamma \, max_a q_*(s', a')]$
 
 ## 1.4. Week 🕓
