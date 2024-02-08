@@ -57,7 +57,7 @@
     }
 
     &:hover {
-      color: $grey-color-light; //$crimson-color-light;
+      color: $grey-color; //$crimson-color-light;
       text-decoration: none;
       cursor: pointer;
     }
@@ -145,7 +145,7 @@
   color: #000000;
 
   &:hover {
-    color: $grey-color-light;  //$crimson-color-light;
+    color: $grey-color;  //$crimson-color-light;
     text-decoration: none;
     cursor: pointer;
   }
@@ -224,7 +224,7 @@ div.qa {
       @include relative-font-size(1.125);
     }
     font-weight: $base-font-weight * 2.0;
-    color: $grey-color;
+    // color: $text-color;//$grey-color;
   }
 
   a {
@@ -232,8 +232,8 @@ div.qa {
     padding-bottom: 1px;
 
     &:hover {
-      color: $grey-color-light; //$crimson-color-light;
-      border-bottom: 1px solid $grey-color-light; //$crimson-color-light;
+      color: $grey-color; //$crimson-color-light;
+      border-bottom: 1px solid $grey-color; //$crimson-color-light;
       padding-bottom: 1px;
       text-decoration: none;
     }
