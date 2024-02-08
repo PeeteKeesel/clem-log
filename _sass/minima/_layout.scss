@@ -25,7 +25,7 @@
   }
 
   &:hover {
-    color: $crimson-color-light;
+    color: $grey-color; //$crimson-color-light;
     text-decoration: none;
     cursor: pointer;
   }
@@ -57,7 +57,7 @@
     }
 
     &:hover {
-      color: $crimson-color-light;
+      color: $grey-color-light; //$crimson-color-light;
       text-decoration: none;
       cursor: pointer;
     }
@@ -145,7 +145,7 @@
   color: #000000;
 
   &:hover {
-    color: $crimson-color-light;
+    color: $grey-color-light;  //$crimson-color-light;
     text-decoration: none;
     cursor: pointer;
   }
@@ -232,8 +232,8 @@ div.qa {
     padding-bottom: 1px;
 
     &:hover {
-      color: $crimson-color-light;
-      border-bottom: 1px solid $crimson-color-light;
+      color: $grey-color-light; //$crimson-color-light;
+      border-bottom: 1px solid $grey-color-light; //$crimson-color-light;
       padding-bottom: 1px;
       text-decoration: none;
     }
