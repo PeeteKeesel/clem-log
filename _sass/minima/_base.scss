@@ -58,6 +58,11 @@ body {
   }
 }
 
+.table-of-contents a:hover {
+  color: black;
+  text-decoration: underline;
+}
+
 .page-navigation {
   font-size: 90%;
   display: block;
