@@ -172,7 +172,7 @@ $$
 \end{align*}
 $$
 
-where $\mathbb{P}(S_{n+1} | S_n)$ is the probability of moving to state $S_{n+1}$ given the current state $S_n$. 
+where $\mathbb{P}(S_{n+1} \vert S_n)$ is the probability of moving to state $S_{n+1}$ given the current state $S_n$. 
 
 - States that the future state of a process depends only on the current state and not on the sequence of events that preceded it
 - Posits that the _future is independent of the past_, given the present
