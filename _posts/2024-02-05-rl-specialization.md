@@ -292,13 +292,17 @@ where $a$ is the start term and $r$ is the common ratio. The common ratio is a v
     - Choose an action with $\pi(a)$
   - _Stochastic_ policies: Map a state to a distribution of actions over all possible actions
     - $s \xrightarrow{\pi} \Delta (a)$
-    - Choose an action with $\pi(a|s)$
+    - Choose an action with $\pi(a \vert s)$
   - A policy depends only on the __current state__. Not on e.g. time or previous states. This is a restriction on the state, not the agent. 
     - Thus, the state should provide the agent with all the information it needs to make a good decision.
 - __Value functions__ estimate future return (= total reward) under a specific policy.
   - Simplify things by aggregating many possible future returns into a single number
   - _State-value_ functions: 
-    - $$v_{\color{Blue}{\pi}}(\color{Red}{s}) \dot{=} \mathbb{E}_{\color{Blue}{\pi}}[ \color{Green}{G_t} | \color{Red}{S_t = s} ]$$
+    - $$
+    \begin{align*}
+    v_{\color{Blue}{\pi}}(\color{Red}{s}) \dot{=} \mathbb{E}_{\color{Blue}{\pi}}[ \color{Green}{G_t} | \color{Red}{S_t = s} ]
+    \end{align*}
+    $$
     - Expected return from current state $s$, if the agent follows $\pi$ afterwards.
   - _Action-value_ functions: 
     - $$
