@@ -313,10 +313,18 @@ where $a$ is the start term and $r$ is the common ratio. The common ratio is a v
     - Expected return from state $s$ if the agent first selects $a$ and then follows $\pi$ afterwards
 - __Bellmann equations__ define a relationship between the value of a state, or state-action pair, and its possible successor states
   - Bellmann equation for the _state-value_ function: 
-    - $v_{\pi}(s) = \sum_{a}\pi(s | a) \sum_{s'}\sum_{r} p(s',r | s,a) [r + \gamma v_{\pi}(s')]$ 
+    - $$
+    \begin{align*}
+    v_{\pi}(s) = \sum_{a}\pi(s | a) \sum_{s'}\sum_{r} p(s',r | s,a) [r + \gamma v_{\pi}(s')]
+    \end{align*}
+    $$ 
     - gives the value of the current state as a sum over the values of all the successor states, and immediate rewards
   - Bellmann equation for the _state-action_ function:
-    - $q_{\pi}(s, a) = \sum_{s'}\sum_{r} p(s',r | s,a) [r + \gamma \sum_{a'} \pi(a' | s') q_{\pi}(s', a')]$
+    - $$
+    \begin{align*}
+    q_{\pi}(s, a) = \sum_{s'}\sum_{r} p(s',r | s,a) [r + \gamma \sum_{a'} \pi(a' | s') q_{\pi}(s', a')]
+    \end{align*}
+    $$
     - gives the value of a particular state-action pair as the sum over the values of all possible next state-action pairs and rewards
   - Can be directly used to find the value function
   - Help us evaluate policies
@@ -330,8 +338,16 @@ where $a$ is the start term and $r$ is the common ratio. The common ratio is a v
     - _Optimal action-value function_ $q_*$:
       - $q_{\pi_*}(s,a) = max_{\pi} q_{\pi}(s,a) \; \text{for all} \; s \in \mathcal{S} \; \text{and} \; a \in \mathcal{A}$ 
     - __Optimal Bellmann equations__
-      - $v_{\pi_*}(s) = max_a \sum_{s'}\sum_{r} p(s',r | s,a) [r + \gamma v_*(s')]$ 
-      - $q_{\pi_*}(s, a) = \sum_{s'}\sum_{r} p(s',r | s,a) [r + \gamma \, max_a q_*(s', a')]$
+      - $$
+      \begin{align*}
+      v_{\pi_*}(s) = max_a \sum_{s'}\sum_{r} p(s',r | s,a) [r + \gamma v_*(s')]
+      \end{align*}
+      $$ 
+      - $$
+      \begin{align*}
+      q_{\pi_*}(s, a) = \sum_{s'}\sum_{r} p(s',r | s,a) [r + \gamma \, max_a q_*(s', a')]
+      \end{align*}
+      $$
 
 ### Bellmann Equation Derivation
 
