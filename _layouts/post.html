@@ -14,10 +14,10 @@ layout: default
       </time>
 
       <span itemprop="author" itemscope itemtype="http://schema.org/Person">
-        Author: <span itemprop="name">{{ site.author }}</span>
+        | Author: <span itemprop="name">{{ site.author }}</span>
       </span>
 
-      <span>
+      <span style="display: block;">
         {% for tag in page.tags %}
           {% capture tag_name %}{{ tag }}{% endcapture %}
           <a class="post-tag" href="/clem-log/tag/{{ tag_name }}"><nobr>{{ tag_name }}</nobr>&nbsp;</a>
