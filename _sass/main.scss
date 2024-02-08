@@ -20,7 +20,8 @@ $brand-color:      #e0491f !default;
 
 $grey-color:       #828282 !default;
 $grey-color-light: lighten($grey-color, 40%) !default;
-$grey-color-dark:  darken($grey-color, 25%) !default;
+// $grey-color-dark:  darken($grey-color, 25%) !default;
+$grey-color-dark:  #727272 !default;
 
 $crimson-color:         #e0491f;
 $crimson-color-light:   #f9493f;
