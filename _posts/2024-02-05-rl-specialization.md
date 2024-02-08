@@ -40,17 +40,6 @@ $$
 = \max_\phi \mathbb{E}_{z\sim q_\phi(z)} \big[ \sum_{s_i \in \tau} \log q_\phi(s_i \vert z) \big]
 $$
 
-Cited as:
-```
-@article{weng2020curriculum,
-  title   = "Curriculum for Reinforcement Learning",
-  author  = "Weng, Lilian",
-  journal = "lilianweng.github.io/lil-log",
-  year    = "2020",
-  url     = "https://lilianweng.github.io/lil-log/2020/01/29/curriculum-for-reinforcement-learning.html"
-}
-```
-
 ## References
 
 [1] Jeffrey L. Elman. ["Learning and development in neural networks: The importance of starting small."](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.128.4487&rep=rep1&type=pdf) Cognition 48.1 (1993): 71-99.
