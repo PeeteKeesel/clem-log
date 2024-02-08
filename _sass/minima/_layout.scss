@@ -224,7 +224,7 @@ div.qa {
       @include relative-font-size(1.125);
     }
     font-weight: $base-font-weight * 2.0;
-    // color: $text-color;//$grey-color;
+    color: $text-color; //$grey-color;
   }
 
   a {
