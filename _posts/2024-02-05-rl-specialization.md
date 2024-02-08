@@ -183,7 +183,7 @@ $$
 \end{align*}
 $$
 
-where $\mathbb{P}(S_{n+1} | S_n))$ is the probability of moving to state $S_{n+1}$ given the current state $S_n$. 
+where $\mathbb{P}(S_{n+1} | S_n)$ is the probability of moving to state $S_{n+1}$ given the current state $S_n$. 
 
 - States that the future state of a process depends only on the current state and not on the sequence of events that preceded it
 - Posits that the _future is independent of the past_, given the present
@@ -289,19 +289,23 @@ where $a$ is the start term and $r$ is the common ratio. The common ratio is a v
 - __Policies__ tell an agent how to behave in their environment
   - _Deterministic_ policies: Map a state to an action
     - $s \xrightarrow{\pi} a$
-    - Choose an action with $\pi (a)$
+    - Choose an action with $\pi(a)$
   - _Stochastic_ policies: Map a state to a distribution of actions over all possible actions
     - $s \xrightarrow{\pi} \Delta (a)$
-    - Choose an action with $\pi(a | s)$
+    - Choose an action with $\pi(a|s)$
   - A policy depends only on the __current state__. Not on e.g. time or previous states. This is a restriction on the state, not the agent. 
     - Thus, the state should provide the agent with all the information it needs to make a good decision.
 - __Value functions__ estimate future return (= total reward) under a specific policy.
   - Simplify things by aggregating many possible future returns into a single number
   - _State-value_ functions: 
-    - $v_{\color{Blue}{\pi}}(\color{Red}{s}) \dot{=} \mathbb{E}_{\color{Blue}{\pi}}[ \color{Green}{G_t} | \color{Red}{S_t = s} ]$
+    - $$v_{\color{Blue}{\pi}}(\color{Red}{s}) \dot{=} \mathbb{E}_{\color{Blue}{\pi}}[ \color{Green}{G_t} | \color{Red}{S_t = s} ]$$
     - Expected return from current state $s$, if the agent follows $\pi$ afterwards.
   - _Action-value_ functions: 
-    - $q_{\color{Blue}{\pi}}(\color{Red}{s}, \color{Red}{a}) \dot{=} \mathbb{E}_{\color{Blue}{\pi}}[ \color{Green}{G_t} | \color{Red}{S_t = s}, \color{Red}{A_t = a} ]$
+    - $$
+    \begin{align*}
+    q_{\color{Blue}{\pi}}(\color{Red}{s}, \color{Red}{a}) \dot{=} \mathbb{E}_{\color{Blue}{\pi}}[ \color{Green}{G_t} | \color{Red}{S_t = s}, \color{Red}{A_t = a} ]
+    \end{align*}
+    $$
     - Expected return from state $s$ if the agent first selects $a$ and then follows $\pi$ afterwards
 - __Bellmann equations__ define a relationship between the value of a state, or state-action pair, and its possible successor states
   - Bellmann equation for the _state-value_ function: 
