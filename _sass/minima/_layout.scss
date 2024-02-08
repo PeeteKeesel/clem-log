@@ -131,10 +131,10 @@
     padding: 1px 5px;
     margin-left: 5px;
     &:hover {
-      border: 1px solid $brand-color;
+      border: 1px solid $grey-color;//$brand-color;
       text-decoration: none;
-      color: #ffffff;
-      background: $brand-color;
+      color: $grey-color-dark;//#ffffff;
+      background: $grey-color;//$brand-color;
     }
   }
 }
