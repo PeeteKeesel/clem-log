@@ -174,11 +174,11 @@ h1, h2, h3, h4, h5, h6 {
  * Links
  */
 a {
-  color: $grey-color-dark; // $brand-color;
-  text-decoration: none;
+  color: $grey-color; // $brand-color;
+  text-decoration: underline;
 
   &:hover {
-    color: $grey-color; // $crimson-color-light;
+    color: $grey-color-light; // $crimson-color-light;
     text-decoration: underline;
   }
 
