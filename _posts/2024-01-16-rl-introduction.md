@@ -117,6 +117,10 @@ Let's take a $10 \times 10$ gridworld as an example environment. The agent $\col
 The most trivial and dumb way for the agent $\color{RoyalBlue}{A}$ to reach the goal state $\color{ForestGreen}{G}$ is to always choose a random action. Performing $5$ episodes this leads to the following distribution of rewards per action. The maximal number of timesteps has been set to $10,000$. 
 
 ![rdmActionSelection]({{ site.baseurl }}/assets/images/rdm_action_selection__violin_plot.png)
+{: style="width: 100%;" class="center"}
+*Fig. 1. Distribution per action when using random action selection.*
+{:.image-caption}
+
 
 Since the agent $\color{RoyalBlue}{A}$ isn't learning anything the only patterns we can observe is that there are basically never positive rewards for the action _up_ ($0$) and _down_ ($2$).
 

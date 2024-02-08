@@ -7,26 +7,69 @@ tags: reinforcement-learning
 toc: true
 ---
 
+<!--more-->
+
+{: class="table-of-content"}
+* TOC
+{:toc}
+
 It sounds like an impossible task if we want to teach integral or derivative to a 3-year-old who does not even know basic arithmetics. That’s why education is important, as it provides a systematic way to break down complex knowledge and a nice curriculum for teaching concepts from simple to hard. A curriculum makes learning difficult things easier and approachable for us humans. But, how about machine learning models? Can we train our models more efficiently with a curriculum? Can we design a curriculum to speed up `learning`?
 
-| Header 1 | Header 2 |
-| -------- | -------- |
-| Data 1   | Data 2   |
+# Test 
+## Task-Specific Curriculum
+
+[Bengio, et al. (2009)]((https://www.coursera.org/specializations/reinforcement-learning)) provided a good overview of curriculum learning in the old days. The paper presented two ideas with toy experiments using a manually designed task-specific curriculum:
+
+The generator is optimized with three objectives:
+- (1) Goal **validity**: The proposed goal should be achievable by an expert policy. The corresponding generative loss is designed to increase the likelihood of generating goals that the solver policy has achieved before (like in [HER](https://arxiv.org/abs/1707.01495)).
+    - $$\mathcal{L}_\text{val}$$ is the negative log-likelihood of generated goals that have been solved by the solver in the past.
+    - $$
+    \begin{align*}
+    \mathcal{L}_\text{val} = \mathbb{E}_{\substack{
+      g \sim \text{ achieved by solver}, \\
+      \xi \in \text{Uniform}(0, \delta), \\
+      f \in \text{Uniform}(0, 1)
+    }} \big[ -\log p(G^{-1}(g + \xi, f)) \big]
+    \end{align*}
+    $$
+
+Precisely, given a trajectory $$\tau = (s_1,\dots,s_T)$$, we would like to find $$\phi$$ such that 
+
+$$
+\max_\phi \mathbb{E}_{z\sim q_\phi(z)} \big[ \log q_\phi(\tau \vert z) \big]
+= \max_\phi \mathbb{E}_{z\sim q_\phi(z)} \big[ \sum_{s_i \in \tau} \log q_\phi(s_i \vert z) \big]
+$$
+
+Cited as:
+```
+@article{weng2020curriculum,
+  title   = "Curriculum for Reinforcement Learning",
+  author  = "Weng, Lilian",
+  journal = "lilianweng.github.io/lil-log",
+  year    = "2020",
+  url     = "https://lilianweng.github.io/lil-log/2020/01/29/curriculum-for-reinforcement-learning.html"
+}
+```
+
+## References
+
+[1] Jeffrey L. Elman. ["Learning and development in neural networks: The importance of starting small."](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.128.4487&rep=rep1&type=pdf) Cognition 48.1 (1993): 71-99.
+
 
 This page contains summaries and personal notes obtained during my studying for the [Reinforcement Learning Specializations](https://www.coursera.org/specializations/reinforcement-learning) from the [University of Alberta](https://www.ualberta.ca/index.html) on [Coursera](https://www.coursera.org/). Note that some of the content is completely taken from the course and therefore the credit goes to the University of Alberta and Coursera. 
 
-# 1. Course 1️⃣ - Fundamentals of Reinforcement Learning
+# Course 1️⃣ - Fundamentals of Reinforcement Learning
 
-## 1.1. Week 🕐
+## Week 🕐
 
-### 1.1.1. The K-Armed Bandit Problem
-#### 1.1.1.1. Sequential Decision Making with Evaluative Feedback
+### The K-Armed Bandit Problem
+#### Sequential Decision Making with Evaluative Feedback
 
 - __Decision making under uncertainty__ can be formalized by the __k-armed bandit problem__
 - Fundamental ideas: __actions__, __rewards__, __value functions__
 
-### 1.1.2. What to Learn? Estimating Action Values
-#### 1.1.2.1. Learning Action Values
+### What to Learn? Estimating Action Values
+#### Learning Action Values
 
 - __Sample-average method__ can be used to estimate action values
 - The __greedy action__ is the action with the highest value estimate
@@ -54,7 +97,7 @@ $$
 
 - Can be used to estimate action values $Q(a)$
 
-#### 1.1.2.2. Estimating Action Values Incrementally
+#### Estimating Action Values Incrementally
 
 - Derived incremental sample average method
 - Generalized the __incremental update rule__ into a more __general update rule__
@@ -72,8 +115,8 @@ $$
 \end{align*}
 $$
 
-### 1.1.3. Exploration vs Exploitation Tradeoff
-#### 1.1.3.1. What is the trade-off?
+### Exploration vs Exploitation Tradeoff
+#### What is the trade-off?
 
 - We discussed the __tradeoff__ between __exploration and exploitation__
 - We introduced __epsilon-greedy__ which is a simple method for balancing exploration and exploitation
@@ -98,7 +141,7 @@ $$
 
 - is a method to choose when to exploit and when to explore
 
-#### 1.1.3.2. Optimistic Initial Values
+#### Optimistic Initial Values
 
 - __Optimistic initial values__ encourage _early exploration_ 
 - Described limitations of __optimistic initial values__
@@ -109,7 +152,7 @@ $$
 - They are not well-suited for _non-stationary problems_ 
 - We may not know what the _optimistic initial value_ should be
 
-#### 1.1.3.3. Upper-Confidence Bound (UCB) Action Selection
+#### Upper-Confidence Bound (UCB) Action Selection
 
 - __Upper-Confidence Bound action-selection__ uses _uncertainty_ in the value estimates for balancing exploration and exploitation
 
@@ -121,11 +164,11 @@ $$
 \end{align*}
 $$
 
-## 1.2. Week 🕑
+## Week 🕑
 
 ![problemOfRl]({{ site.baseurl }}/assets/images/problem_of_rl_via_mdp.png)
 
-### 1.2.1. Introduction to Markov Decision Processes
+### Introduction to Markov Decision Processes
 
 - _MDPs_ provide a general framework for sequential decision making
 - The __dynamics__ of an MDP are defined by a probability distribution
@@ -146,7 +189,7 @@ where $\mathbb{P}(S_{n+1} | S_n))$ is the probability of moving to state $S_{n+1
 - Posits that the _future is independent of the past_, given the present
 - Does not mean that the state representation tells all that would be useful to know, only that it has not forgotten anything that would be useful to know
 
-### 1.2.2. The Goal of Reinforcement Learning
+### The Goal of Reinforcement Learning
 
 - The __goal of an agent__ is to __maximize the expected return__
 - In __episodic tasks__ the agent environment interaction breaks up into __episodes__
@@ -159,7 +202,7 @@ $$
 \end{align*}
 $$ 
 
-### 1.2.3. Michael Littman: The Reward Hypothesis
+### Michael Littman: The Reward Hypothesis
 
 <u>Goals as Rewards</u>
 
@@ -187,7 +230,7 @@ $$
   - Blind reward pursuers aren't good people
   - We create our "purpose" over years, lifetimes
 
-### 1.2.4. Continuing Tasks
+### Continuing Tasks
 
 - In __continuing tasks__, the agent-environment interaction goes on indefinitely
 - __Discounting__ is used to ensure returns are finite
@@ -238,7 +281,7 @@ $$
 where $a$ is the start term and $r$ is the common ratio. The common ratio is a value for which the values in a series gets consistently multiplied by [[Wikipedia, Infinite Geometric Series](https://www.idealminischool.ca/idealpedia/index.php/Infinite_Geometric_Series#:~:text=The%20general%20formula%20for%20finding,r%20is%20the%20common%20ratio.)].
 
 
-## 1.3. Week 🕒
+## Week 🕒
 
 
 <u>Summary</u>
@@ -322,4 +365,4 @@ $$
 - Without the Bellman equation, we might have to consider an infinite number of possible futures
 - We can only solve __small MDPs__ directly, but __Bellmann Equations__ will factor into the solutions we see later for __large MDPs__
 
-## 1.4. Week 🕓
+## Week 🕓
