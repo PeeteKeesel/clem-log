@@ -125,16 +125,16 @@
 
   a.post-tag {
     border-radius: 5px;
-    border: 1px solid $grey-color-light;
-    background: $grey-color-light;
-    color: $grey-color-dark;
+    border: 1px solid $grey-color-very-very-light;
+    background: $grey-color-very-very-light;
+    color: $grey-color;
     padding: 1px 5px;
     margin-left: 5px;
     &:hover {
-      border: 1px solid $grey-color;//$brand-color;
+      border: 1px solid $grey-color-very-light;//$brand-color;
       text-decoration: none;
-      color: $grey-color-dark;//#ffffff;
-      background: $grey-color;//$brand-color;
+      color: $grey-color;//#ffffff;
+      background: $grey-color-very-light;//$brand-color;
     }
   }
 }
