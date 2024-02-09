@@ -13,38 +13,6 @@ toc: true
 * TOC
 {:toc}
 
-It sounds like an impossible task if we want to teach integral or derivative to a 3-year-old who does not even know basic arithmetics. That’s why education is important, as it provides a systematic way to break down complex knowledge and a nice curriculum for teaching concepts from simple to hard. A curriculum makes learning difficult things easier and approachable for us humans. But, how about machine learning models? Can we train our models more efficiently with a curriculum? Can we design a curriculum to speed up `learning`?
-
-# Test 
-## Task-Specific Curriculum
-
-[Bengio, et al. (2009)]((https://www.coursera.org/specializations/reinforcement-learning)) provided a good overview of curriculum learning in the old days. The paper presented two ideas with toy experiments using a manually designed task-specific curriculum:
-
-The generator is optimized with three objectives:
-- (1) Goal **validity**: The proposed goal should be achievable by an expert policy. The corresponding generative loss is designed to increase the likelihood of generating goals that the solver policy has achieved before (like in [HER](https://arxiv.org/abs/1707.01495)).
-    - $$\mathcal{L}_\text{val}$$ is the negative log-likelihood of generated goals that have been solved by the solver in the past.
-    - $$
-    \begin{align*}
-    \mathcal{L}_\text{val} = \mathbb{E}_{\substack{
-      g \sim \text{ achieved by solver}, \\
-      \xi \in \text{Uniform}(0, \delta), \\
-      f \in \text{Uniform}(0, 1)
-    }} \big[ -\log p(G^{-1}(g + \xi, f)) \big]
-    \end{align*}
-    $$
-
-Precisely, given a trajectory $$\tau = (s_1,\dots,s_T)$$, we would like to find $$\phi$$ such that 
-
-$$
-\max_\phi \mathbb{E}_{z\sim q_\phi(z)} \big[ \log q_\phi(\tau \vert z) \big]
-= \max_\phi \mathbb{E}_{z\sim q_\phi(z)} \big[ \sum_{s_i \in \tau} \log q_\phi(s_i \vert z) \big]
-$$
-
-## References
-
-[1] Jeffrey L. Elman. ["Learning and development in neural networks: The importance of starting small."](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.128.4487&rep=rep1&type=pdf) Cognition 48.1 (1993): 71-99.
-
-
 This page contains summaries and personal notes obtained during my studying for the [Reinforcement Learning Specializations](https://www.coursera.org/specializations/reinforcement-learning) from the [University of Alberta](https://www.ualberta.ca/index.html) on [Coursera](https://www.coursera.org/). Note that some of the content is completely taken from the course and therefore the credit goes to the University of Alberta and Coursera. 
 
 # Course 1️⃣ - Fundamentals of Reinforcement Learning
@@ -379,3 +347,8 @@ $$
 - We can only solve __small MDPs__ directly, but __Bellmann Equations__ will factor into the solutions we see later for __large MDPs__
 
 ## Week 🕓
+
+
+## References
+
+[1] Richard S. Sutton and Andrew G. Barto. ["Reinforcement Learning: An Introduction."](https://web.stanford.edu/class/psych209/Readings/SuttonBartoIPRLBook2ndEd.pdf) 2nd edition (2014), MIT Press.
