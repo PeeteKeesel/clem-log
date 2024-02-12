@@ -15,5 +15,5 @@ _site
 *.out
 *.synctex.gz
 _latex/
-vendor/*
+vendor/
 
