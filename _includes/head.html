@@ -37,11 +37,11 @@
     {% if page.image %}
         <meta content="/img/srcset/{{ page.image }}" property="og:image">
     {% endif %}
-    {% if page.tags %}
+    <!-- {% if page.tags %}
         {% for tag in page.tags %}
         <meta content="{{ tag }}" property="article:tag">
         {% endfor %}
-    {% endif %}
+    {% endif %} -->
 
     <link rel="shortcut icon" href="{{ '/assets/favicon_oatmeal.ico' | relative_url }}">
     <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">

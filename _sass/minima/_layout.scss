@@ -78,7 +78,7 @@
   font-size: $small-font-size;
   color: $grey-color;
   clear: both;
-  margin-bottom: 30px;
+  margin-bottom: 15px;
 
   a {
     color: $grey-color;
@@ -129,7 +129,8 @@
     background: $grey-color-very-light;
     color: $grey-color;
     padding: 5px 10px;//1px 5px;
-    margin-left: 5px;
+    // margin-left: 5px;
+    font-size: $small-font-size;
     &:hover {
       border: 1px solid $grey-color-light;//$brand-color;
       text-decoration: none;
@@ -229,13 +230,14 @@ div.qa {
   }
 
   a {
-    border-bottom: 1px dotted #bbb;
-    padding-bottom: 1px;
+    color: $text-color;
+    border-bottom: 1px solid $text-color; //dotted  #bbb;
+    padding-bottom: -1px;
 
     &:hover {
-      color: $grey-color; //$crimson-color-light;
-      border-bottom: 1px solid $grey-color; //$crimson-color-light;
-      padding-bottom: 1px;
+      color: darken($grey-color-light, 30%); //$crimson-color-light;
+      border-bottom: 1px solid darken($grey-color-light, 30%); //$crimson-color-light;
+      padding-bottom: -1px;
       text-decoration: none;
     }
   }

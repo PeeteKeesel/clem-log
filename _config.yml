@@ -15,7 +15,7 @@ plugins:
 exclude:
   - Gemfile
   - Gemfile.lock
-  # - vendor
+  # - vendor/bundle
 kramdown:
   input: GFM
   auto_ids: true

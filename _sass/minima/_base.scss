@@ -64,23 +64,46 @@ body {
 }
 
 .page-navigation {
-  font-size: 90%;
-  display: block;
-  width: 100%;
-  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 5px;
+  background: $grey-color-very-light;
+  // padding: 5px;
+  // margin-left: 5px;
+  font-size: $small-font-size;
 
-  a {
+  .full-width-link {
     display: block;
-    overflow: hidden;
     width: 50%;
-    float: left;
-    margin: 1em 0;
-  }
-
-  .next {
-    text-align: right;
+    font-size: $base-font-size;
+    color: $text-color;
+    // text-align: left; // If you want the text to be centered
+    padding: 10px; // This increases the clickable area
+    border: 1px solid $grey-color-very-light;
+    border-radius: 5px;
+    
+    &:hover, &:focus {
+      background: darken($grey-color-very-light, 3%); // Slightly darken the button on hover/focus for feedback
+      text-decoration: underline; // Remove the underline on hover/focus
+    }
+    
+    span {
+      display: block; // This makes the span take up the full width inside the link
+    }
   }
 }
+
+// You may want to hide the prev/next links if there isn’t a previous or next page
+.prev {
+  margin-right: auto; // Pushes the button to the left
+  text-align: left;
+}
+
+.next {
+  margin-left: auto; // Pushes the button to the right
+  text-align: right;
+}
+
 
 /**
  * Set `margin-bottom` to maintain vertical rhythm
