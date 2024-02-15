@@ -15,6 +15,8 @@ toc: true
 
 This page contains summaries and personal notes obtained during my studying for the [Reinforcement Learning Specializations](https://www.coursera.org/specializations/reinforcement-learning) from the [University of Alberta](https://www.ualberta.ca/index.html) on [Coursera](https://www.coursera.org/). Note that some of the content is completely taken from the course and therefore the credit goes to the University of Alberta and Coursera. 
 
+Courses
+
 # Course 1️⃣ - Fundamentals of Reinforcement Learning
 
 ## Week 🕐
