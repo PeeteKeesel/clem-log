@@ -15,18 +15,18 @@ toc: true
 
 This page contains summaries and personal notes obtained during my studying for the [Reinforcement Learning Specializations](https://www.coursera.org/specializations/reinforcement-learning) from the [University of Alberta](https://www.ualberta.ca/index.html) on [Coursera](https://www.coursera.org/). Note that some of the content is completely taken from the course and therefore the credit goes to the University of Alberta and Coursera. 
 
-# Course 1️⃣ - Fundamentals of Reinforcement Learning
+# 1. Course 1️⃣ - Fundamentals of Reinforcement Learning
 
-## Week 🕐
+## 1.1. Week 🕐 - Introduction
 
-### The K-Armed Bandit Problem
-#### Sequential Decision Making with Evaluative Feedback
+### 1.1.1. The K-Armed Bandit Problem
+#### 1.1.1.1. Sequential Decision Making with Evaluative Feedback
 
 - __Decision making under uncertainty__ can be formalized by the __k-armed bandit problem__
 - Fundamental ideas: __actions__, __rewards__, __value functions__
 
-### What to Learn? Estimating Action Values
-#### Learning Action Values
+### 1.1.2. What to Learn? Estimating Action Values
+#### 1.1.2.1. Learning Action Values
 
 - __Sample-average method__ can be used to estimate action values
 - The __greedy action__ is the action with the highest value estimate
@@ -54,7 +54,7 @@ $$
 
 - Can be used to estimate action values $Q(a)$
 
-#### Estimating Action Values Incrementally
+#### 1.1.2.2. Estimating Action Values Incrementally
 
 - Derived incremental sample average method
 - Generalized the __incremental update rule__ into a more __general update rule__
@@ -72,8 +72,8 @@ $$
 \end{align*}
 $$
 
-### Exploration vs Exploitation Tradeoff
-#### What is the trade-off?
+### 1.1.3. Exploration vs Exploitation Tradeoff
+#### 1.1.3.1. What is the trade-off?
 
 - We discussed the __tradeoff__ between __exploration and exploitation__
 - We introduced __epsilon-greedy__ which is a simple method for balancing exploration and exploitation
@@ -98,7 +98,7 @@ $$
 
 - is a method to choose when to exploit and when to explore
 
-#### Optimistic Initial Values
+#### 1.1.3.2. Optimistic Initial Values
 
 - __Optimistic initial values__ encourage _early exploration_ 
 - Described limitations of __optimistic initial values__
@@ -109,7 +109,7 @@ $$
 - They are not well-suited for _non-stationary problems_ 
 - We may not know what the _optimistic initial value_ should be
 
-#### Upper-Confidence Bound (UCB) Action Selection
+#### 1.1.3.3. Upper-Confidence Bound (UCB) Action Selection
 
 - __Upper-Confidence Bound action-selection__ uses _uncertainty_ in the value estimates for balancing exploration and exploitation
 
@@ -121,11 +121,10 @@ $$
 \end{align*}
 $$
 
-## Week 🕑
-
+## 1.2. Week 🕑 - Markov Decision Processes
 ![problemOfRl]({{ site.baseurl }}/assets/images/problem_of_rl_via_mdp.png)
 
-### Introduction to Markov Decision Processes
+### 1.2.1. Introduction to Markov Decision Processes
 
 - _MDPs_ provide a general framework for sequential decision making
 - The __dynamics__ of an MDP are defined by a probability distribution
@@ -146,7 +145,7 @@ where $\mathbb{P}(S_{n+1} \vert S_n)$ is the probability of moving to state $S_{
 - Posits that the _future is independent of the past_, given the present
 - Does not mean that the state representation tells all that would be useful to know, only that it has not forgotten anything that would be useful to know
 
-### The Goal of Reinforcement Learning
+### 1.2.2. The Goal of Reinforcement Learning
 
 - The __goal of an agent__ is to __maximize the expected return__
 - In __episodic tasks__ the agent environment interaction breaks up into __episodes__
@@ -159,7 +158,7 @@ $$
 \end{align*}
 $$ 
 
-### Michael Littman: The Reward Hypothesis
+### 1.2.3. Michael Littman: The Reward Hypothesis
 
 <u>Goals as Rewards</u>
 
@@ -187,7 +186,7 @@ $$
   - Blind reward pursuers aren't good people
   - We create our "purpose" over years, lifetimes
 
-### Continuing Tasks
+### 1.2.4. Continuing Tasks
 
 - In __continuing tasks__, the agent-environment interaction goes on indefinitely
 - __Discounting__ is used to ensure returns are finite
@@ -238,7 +237,7 @@ $$
 where $a$ is the start term and $r$ is the common ratio. The common ratio is a value for which the values in a series gets consistently multiplied by [[Wikipedia, Infinite Geometric Series](https://www.idealminischool.ca/idealpedia/index.php/Infinite_Geometric_Series#:~:text=The%20general%20formula%20for%20finding,r%20is%20the%20common%20ratio.)].
 
 
-## Week 🕒
+## 1.3. Week 🕒 - Value Functions & Bellmann Equations
 
 
 <u>Summary</u>
@@ -272,14 +271,14 @@ where $a$ is the start term and $r$ is the common ratio. The common ratio is a v
   - Bellmann equation for the _state-value_ function: 
     - $$
     \begin{align*}
-    v_{\pi}(s) = \sum_{a}\pi(s | a) \sum_{s'}\sum_{r} p(s',r | s,a) [r + \gamma v_{\pi}(s')]
+    v_{\pi}(s) = \sum_{a}\pi(s \vert a) \sum_{s'}\sum_{r} p(s',r | s,a) [r + \gamma v_{\pi}(s')]
     \end{align*}
     $$ 
     - gives the value of the current state as a sum over the values of all the successor states, and immediate rewards
   - Bellmann equation for the _state-action_ function:
     - $$
     \begin{align*}
-    q_{\pi}(s, a) = \sum_{s'}\sum_{r} p(s',r | s,a) [r + \gamma \sum_{a'} \pi(a' | s') q_{\pi}(s', a')]
+    q_{\pi}(s, a) = \sum_{s'}\sum_{r} p(s',r | s,a) [r + \gamma \sum_{a'} \pi(a' \vert s') q_{\pi}(s', a')]
     \end{align*}
     $$
     - gives the value of a particular state-action pair as the sum over the values of all possible next state-action pairs and rewards
@@ -306,7 +305,7 @@ where $a$ is the start term and $r$ is the common ratio. The common ratio is a v
       \end{align*}
       $$
 
-### Bellmann Equation Derivation
+### 1.3.1. Bellmann Equation Derivation
 
 - We have derived the __Bellmann Equations__ for __state-value__ and __action-value functions__
 - The current time-step's __state/action values__ can be written recursively in terms of __future state/action values__
@@ -340,15 +339,79 @@ $$
 \end{align*}
 $$ 
 
-### Why Bellmann Equations? 
+### 1.3.2. Why Bellmann Equations? 
 
 - You can use the __Bellmann Equations__ to solve for a __value function__ by writing a __system of linear equations__. (e.g. a linear equation for each action in each state)
 - Without the Bellman equation, we might have to consider an infinite number of possible futures
 - We can only solve __small MDPs__ directly, but __Bellmann Equations__ will factor into the solutions we see later for __large MDPs__
 
-## Week 🕓
+## 1.4. Week 🕓 - Dynamic Programming
+
+### 1.4.1. Policy Evaluation (Prediction)
+
+- __Policy evaluation__ is the task of determining state-value function $v_{\pi}$, for a particular policy $\pi$
+- __Control__ is the task of improving an existing policy 
+- __Dynamic programming__ techniques can be used to solve both these tasks, if we have access to the __dynamics function__ $p$
+
+#### 1.4.1.1. Policy Evaluation vs Control
+
+- We can turn the Bellmann equation into an __update rule__, to __iteratively__ compute value functions 
+
+<u>Iterative Policy Evaluation in a Nutshell</u>
+
+$$
+\begin{align*}
+    v_{\color{Green}{\pi}}(s) &{\color{Green}{=}} \sum_{a}\pi (a | s) \sum_{s'}\sum_{r} p(s', r | s, a) \Big[ r + \gamma v_{\color{Green}{\pi}}(s') \Big] \\
+    v_{\color{Red}{k+1}}(s) &{\color{Red}{\leftarrow}} \sum_{a}\pi (a | s) \sum_{s'}\sum_{r} p(s', r | s, a) \Big[ r + \gamma v_{\color{Red}{k}}(s') \Big] \\
+\end{align*}
+$$ 
+
+This gives us a procedure to iteratively refine our estimate of the value function. Each iteration produces a better estimate. If $v_{k+1} = v_k$ for all states $s$ then $v_k = v_{\pi}$ and thus we have found the value function. This is because $v_{\pi}$ is the unique solution to the Bellmann equation. In fact, 
+
+$$
+\begin{align*}
+    \text{For any} \; v_0: \; \lim_{k \to \infty} v_k = v_{\pi}
+\end{align*}
+$$
+
+- _Sweep_: Once each iteration applied the update to every state $s \in \mathcal{S}$.
+
+We simply need to store two arrays, $V$ (for the current value estimates) and $V'$ (for the updated value estimates). We update $V'$ one state at the time, where every estimate in $V$ integrates into the update of the current state in $V'$. At the end of a full sweep we can set $V \gets V'$. Then we do the next iteration.
+
+$$
+\begin{align*}
+
+& \underline{\phantom{\textbf{Iterative Policy Evaluation, for estimating} \; V \approx v_{\pi}}} \\
+& \underline{\textbf{Iterative Policy Evaluation, for estimating} \; V \approx v_{\pi}} \\
+& \text{Input:} \; \pi && \color{Grey}{\text{the policy to be evaluated}} \\
+& V \gets \vec{0}, V' \gets \vec{0} \\ 
+& \text{Loop:} \\  
+& \qquad \Delta \leftarrow 0 \\ 
+& \qquad \text{Loop for each} \; s \in S: && \color{Grey}{\text{a sweep}} \\ 
+& \qquad \qquad V'(s) \leftarrow \sum_{a}\pi(a \vert s) \sum_{s', r} p(s',r|s,a) [ r + \gamma V(s') ] \\ 
+& \qquad \qquad \Delta \leftarrow \max(\Delta , | V'(s) - V(s)) && \color{Grey}{\text{largest update to this state value}} \\ 
+& \qquad V \leftarrow V' \\ 
+& \text{until} \; \Delta < \theta \quad \text{(s small positive number)} && \color{Grey}{\text{value function stops changing}} \\
+& \text{Output:} \; V \approx v_{\pi}
+
+\end{align*}
+$$
+
+#### 1.4.1.2. Iterative Policy Evaluation
+
+### 1.4.2. Policy Iteration (Control)
+
+#### 1.4.2.1. Policy Improvement
+
+#### 1.4.2.2. Policy Iteration
+
+### 1.4.3. Generalized Policy Iteration
+
+#### 1.4.3.1. Flexibility of the Policy Iteration Framework
+
+#### 1.4.3.2. Efficiency of Dynamic Programming
 
 
-## References
+## 1.5. References
 
 [1] Richard S. Sutton and Andrew G. Barto. ["Reinforcement Learning: An Introduction."](https://web.stanford.edu/class/psych209/Readings/SuttonBartoIPRLBook2ndEd.pdf) 2nd edition (2014), MIT Press.
