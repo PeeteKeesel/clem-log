@@ -349,11 +349,14 @@ $$
 
 ### 1.4.1. Policy Evaluation (Prediction)
 
+#### 1.4.1.1. Policy Evaluation vs Control
+
 - __Policy evaluation__ is the task of determining state-value function $v_{\pi}$, for a particular policy $\pi$
 - __Control__ is the task of improving an existing policy 
 - __Dynamic programming__ techniques can be used to solve both these tasks, if we have access to the __dynamics function__ $p$
 
-#### 1.4.1.1. Policy Evaluation vs Control
+#### 1.4.1.2. Iterative Policy Evaluation
+
 
 - We can turn the Bellmann equation into an __update rule__, to __iteratively__ compute value functions 
 
@@ -396,8 +399,6 @@ $$
 
 \end{align*}
 $$
-
-#### 1.4.1.2. Iterative Policy Evaluation
 
 ### 1.4.2. Policy Iteration (Control)
 
