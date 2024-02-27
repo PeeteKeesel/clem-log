@@ -347,6 +347,33 @@ $$
 
 ## 1.4. Week 🕓 - Dynamic Programming
 
+<u>Summary</u>
+
+- __Policy evaluation__ is the task of determining the state-value function $v_{\pi'}$ for a particular policy $\pi$. 
+  
+$$
+\begin{align*}
+    v_{\color{Green}{\pi}}(s) &{\color{Green}{=}} \sum_{a}\pi (a | s) \sum_{s'}\sum_{r} p(s', r | s, a) \Big[ r + \gamma v_{\color{Green}{\pi}}(s') \Big] \\
+    v_{\color{Red}{k+1}}(s) &{\color{Red}{\leftarrow}} \sum_{a}\pi (a | s) \sum_{s'}\sum_{r} p(s', r | s, a) \Big[ r + \gamma v_{\color{Red}{k}}(s') \Big] \\
+\end{align*}
+$$ 
+
+- __Control__ refers to the task of improving a policy
+
+<u>Policy Improvement Theorem</u>
+
+$$
+\begin{align*}
+
+\pi'(s) \dot{=} argmax_a \sum_{s'}\sum_{r} p(s',r \vert s,a) [ r + \gamma v_{\pi}(s') ] \\
+\pi' > \pi \; \text{unless} \; \pi \; \text{is optimal}
+
+\end{align*}
+$$
+
+- Generalized Policy Iteration includes __asynchronous__ DP methods
+
+
 ### 1.4.1. Policy Evaluation (Prediction)
 
 #### 1.4.1.1. Policy Evaluation vs Control
@@ -356,7 +383,6 @@ $$
 - __Dynamic programming__ techniques can be used to solve both these tasks, if we have access to the __dynamics function__ $p$
 
 #### 1.4.1.2. Iterative Policy Evaluation
-
 
 - We can turn the Bellmann equation into an __update rule__, to __iteratively__ compute value functions 
 
@@ -394,7 +420,7 @@ $$
 & \qquad \qquad V'(s) \leftarrow \sum_{a}\pi(a \vert s) \sum_{s', r} p(s',r|s,a) [ r + \gamma V(s') ] \\ 
 & \qquad \qquad \Delta \leftarrow \max(\Delta , | V'(s) - V(s)) && \color{Grey}{\text{largest update to this state value}} \\ 
 & \qquad V \leftarrow V' \\ 
-& \text{until} \; \Delta < \theta \quad \text{(s small positive number)} && \color{Grey}{\text{value function stops changing}} \\
+& \text{until} \; \Delta < \theta \quad \text{(a small positive number)} && \color{Grey}{\text{value function stops changing}} \\
 & \text{Output:} \; V \approx v_{\pi}
 
 \end{align*}
@@ -404,13 +430,194 @@ $$
 
 #### 1.4.2.1. Policy Improvement
 
+<details>
+<summary>Content of Section:</summary>
+
+<ul>
+<li> <i>Understand</i> the <b>policy improvement theorem</b> </li>
+<li> <i>Use</i> a value function for a policy to produce a better policy for a given MDP </li>
+</ul>
+
+</details>
+
+- The __Policy Improvement Theorem__ tells us that a greedified policy is a strict improvement (unless the original policy was already optimal)
+- Use the value function under a given policy, to produce a strictly better policy
+
+Let's recall that 
+
+$$
+\begin{align*}
+
+\pi_*(s) &= \underbrace{argmax_{a}}_{\text{greedy action}} \sum_{s'}\sum_{r}p(s',r | s,a) [ r + \gamma v_*(s') ]
+\\ 
+\pi_{s} &= argmax_{a} \sum_{s'}\sum_{r}p(s',r | s,a) [ r + \gamma v_{\pi}(s') ] \; \text{for all} \; s \in \mathcal{S}
+\\
+&\rightarrow \; v_{\pi} \; \text{obeys the Bellmann optimality equation} 
+\\ 
+&\rightarrow \; \pi \; \text{is optimal}
+
+\end{align*}
+$$
+
+<u>Policy Improvement Theorem</u>
+
+> The new policy is a strict improvement over $\color{Blue}{\pi}$ unless $\color{Blue}{\pi}$ is already optimal
+
+$$
+\begin{align*}
+
+q_{\color{Blue}{\pi}}(s, \color{Red}{\pi'}(s)) \geq q_{\color{Blue}{\pi}}(s, \color{Blue}{\pi}(s)) \; \text{for all} \; s \in \mathcal{S} \; \rightarrow \color{Red}{\pi'} \geq \color{Blue}{\pi} 
+\\
+q_{\color{Blue}{\pi}}(s, \color{Red}{\pi'}(s)) > q_{\color{Blue}{\pi}}(s, \color{Blue}{\pi}(s)) \; \text{for at least one} \; s \in \mathcal{S} \; \rightarrow \color{Red}{\pi'} > \color{Blue}{\pi} 
+
+\end{align*}
+$$
+
+Thus, the value function of a given policy can be used to find a better policy. Now, how can we use this to find the optimal policy by iteratively evaluating and proving a sequence of policies 👇
+
 #### 1.4.2.2. Policy Iteration
+
+<details>
+<summary>Content of Section:</summary>
+
+<li> <i>Outline</i> the <b>policy iteration</b> algorithm for finding the optimal policy </li>
+<li> <i>Understand</i> the <b>dance of policy and value</b>, how policy iteration reaches the optimal policy by alternating between evaluating a policy and improving it</li>
+<li><i>Apply</i> policy iteration to compute optimal policies and optimal value functions</li>
+
+</details>
+
+- __Policy Iteration__ works by alternating __policy evaluation__ and __policy improvement__
+- Policy Iteration follows a sequence of __better and better policies and value functions__ until it reaches the optimal policy and associated optimal value function
+
+The intuition of policy iteration is to evaluate the current value, yielding in the value function for the current policy. We then use this value function to obtain a new policy. We continue this evaluation ($\color{Green}{E}$) and improvement ($\color{Blue}{I}$) play nutil we found the optimal value function and therefore the optimal policy.
+
+$$
+\begin{align*}
+
+\pi_1 \xrightarrow{\color{Green}{E}} v_{\pi_1} \xrightarrow{\color{Blue}{I}} \pi_2 \xrightarrow{\color{Green}{E}} v_{\pi_2} \xrightarrow{\color{Blue}{I}} \pi_3 \xrightarrow{\color{Green}{E}} \cdots \xrightarrow{\color{Blue}{I}} \pi_* \xrightarrow{\color{Green}{E}} v_{\pi_*} \xrightarrow{\color{Blue}{I}} \pi_*
+
+\end{align*}
+$$
+
+Each policy in this cycle is _deterministic_ and since there are finite number of deterministic policies, this process must eventually reach an optimal policy. Note that always
+
+$$
+\begin{align*}
+
+\pi_{i+1} \; \text{is greedy wrt} \; v_{\pi_i}
+
+\end{align*}
+$$
+
+but $v_{\pi_i}$ no longer accurately reflects the value of $\pi_{i+1}$. Only the next $\color{Green}{E}$ step makes the value function $v_{\pi_{i+1}}$ accurately reflect the value of $\pi_{i+1}$. 
+
+![policyIteration]({{ site.baseurl }}/assets/images/rl_specialization/policy_iteration.webp)
+
+The following shows the policy iteration algorithm in pseudocode.
+
+$$
+\begin{align*}
+
+& \underline{\phantom{\textbf{Policy Iteration (using iterative policy evaluation) for estimating} \; \pi \approx \pi_*}} \\
+& \underline{\textbf{Policy Iteration (using iterative policy evaluation) for estimating} \; \pi \approx \pi_*} \\
+& 1. \; \text{Initialization} \\
+& \phantom{1.} \; V(s) \in \mathbb{R} \; \text{and} \; \pi(s) \in \mathcal{A}(s) \; \text{arbitrarily for all} \; s \in \mathcal{S} \\  
+\\
+& 2. \; \text{Policy Evaluation} \\
+& \phantom{2.} \; \text{Loop:} \\ 
+& \qquad \Delta \leftarrow 0 \\ 
+& \qquad \text{Loop for each} \; s \in S: \\ 
+& \qquad \qquad V(s) \leftarrow \sum_{s',r}\pi(s',r \vert s,\pi(s)) [ r + \gamma V(s') ] \\ 
+& \qquad \qquad \Delta \leftarrow \max(\Delta , | v - V(s)) \\
+& \phantom{2.}  \; \text{until} \; \Delta < \theta \quad \text{(a small positive number determining the accuracy of estimation)} \\
+\\
+& 3. \; \text{Policy Improvement} \\
+& \phantom{2.} \; policyStable \gets true \\
+& \qquad \text{For each} \; s \in \mathcal{S}: \\  
+& \qquad \qquad oldAction \gets \pi(s) \\
+& \qquad \qquad \pi(s) \gets argmax_a \sum_{s',r} p(s',r \vert s,a) [ r + \gamma V(s') ] \\
+& \qquad \qquad \text{If} \; oldAction \neq \pi(s), \; \text{then}\; policyStable \gets false \\
+& \qquad \text{If} \; policyStable, \; \text{then stop and return} \; V \approx v_*, \text{and} \; \pi \approx \pi_*; \text{else go to} \; 2
+
+\end{align*}
+$$
 
 ### 1.4.3. Generalized Policy Iteration
 
 #### 1.4.3.1. Flexibility of the Policy Iteration Framework
 
+<details>
+<summary>Content of Section:</summary>
+
+<li> <i>Understand</i> the framework of <b>Generalized Policy Iteration</b></li>
+<li> <i>Outline</i> <b>Value Iteration</b>, an important special case of Generalized Policy Iteration</li>
+<li><i>Apply</i> policy iteration to compute optimal policies and optimal value functions</li>
+<li> <i>Understand</i> the distinction between <b>synchronous</b> and <b>asynchronous</b> dynamic programming methods </li>
+
+</details>
+
+- __Value Iteration__ allows us to combine policy evaluation and improvement into a single update
+- __Asynchronous__ dynamic programming (DP) methods give us the freedom to update states in any order
+- __Generalized Policy Iteration__ unifies classical DP methods, value iteration, and asynchronous DP
+
+Value iteration is a generalized policy iteration algorithm. In value iteration, we sweep over all the states and greedify wrt the current value function. However, we do not run $\color{Green}{E}$ to completion. We just perform one sweep over all the states. After that, we greedify again. The algorithm looks very similar to iterative policy evaluation, however, instead of updating the value according to a fixed policy, we update using the action that maximizes the current value estimate.
+
+$$
+\begin{align*}
+
+& \underline{\phantom{\textbf{Value Iteration for estimating} \; \pi \approx \pi_*}} \\
+& \underline{\textbf{Value Iteration for estimating} \; \pi \approx \pi_*} \\
+& \text{Algorithm parameter: a small threshold} \; \theta > 0 \; \text{determining accuracy of estimation} \\
+& \text{Initialize} \; V(s), \text{for all} \; s \in \mathcal{S^{+}}, \text{arbitrarily except that} \; V(terminal)=0 \\
+\\
+& \text{Loop:} \\
+& \qquad \Delta \gets 0 \\
+& \qquad \text{Loop for each} \; s \in S: \\ 
+& \qquad \qquad v \gets V(s)  \\
+& \qquad \qquad V(s) \gets max_a \sum_{s',r}\pi(s',r \vert s,\pi(s)) [ r + \gamma V(s') ] \\
+& \qquad \qquad \Delta \leftarrow \max(\Delta , | v - V(s)) \\
+& \text{until} \; \Delta < \theta \\
+\\
+& \text{Output a deterministic policy,} \; \pi \approx \pi_*, \; \text{such that} \\
+& \qquad \pi(s) = argmax_a \sum_{s',r} p(s',r \vert s,a) [ r + \gamma V(s') ]
+
+\end{align*}
+$$
+
+Value iteration sweeps the entire state space in each iteration, called a full sweep. Thus, value iteration and policy iteration are called _synchronous_. Obviously, this is a problem for large state spaces. 
+
+_Asynchronous_ DP algorithms update the values of states in any order, they do not perform systematic sweeps. In order to guarantee convergence, asynchronous algorithms must continue to update the values of all states.
+
 #### 1.4.3.2. Efficiency of Dynamic Programming
+
+<details>
+<summary>Content of Section:</summary>
+
+<li> <i>Describe</i> <b>Monte Carlo Sampling</b> as an alternative method for learning a value function</li>
+<li> <i>Describe</i> <b>Brute-Force Search</b>as an alternative for finding an optimal policy</li>
+<li> <i>Understand</i> the advantage of <b>DP</b> and <b>bootstrapping</b> over these alternative strategies for finding the optimal policy </li>
+
+</details>
+
+- __Bootstrapping__ can save us from performing a huge amount of unnecessary work
+
+<u>Bootstrapping</u>
+
+> Using the value estimates of successor states $v(s')$ to improve the current value estimate $v(s)$
+
+$$
+\begin{align*}
+    v_{k+1}(\color{Red}{s}) &= \sum_{a}\pi (a | s) \sum_{s'}\sum_{r} p(s', r | s, a) \Big[ r + \gamma v_{k}(\color{Red}{s'}) \Big]
+\end{align*}
+$$ 
+
+<u>Efficiency of DP</u>
+
+Policy iteration is guaranteed to find the optimal policy in time polynomial in the number of states $\vert \mathcal{S} \vert$ and actions $\vert \mathcal{A} \vert$. 
+
+<u>Curse of Dimensionality</u>
+
+> The size of the state space grows __exponentially__ as the number of relevant features increases.
 
 
 ## 1.5. References
