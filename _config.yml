@@ -1,7 +1,7 @@
 title: Clem's Log
 name: "Clem's Logs"
 author: Clem
-baseurl: "/clem-log"
+# baseurl: "/clem-log"
 description: Learning notes.
 profile_url: "https://peetekeesel.github.io"
 
@@ -15,7 +15,7 @@ plugins:
 exclude:
   - Gemfile
   - Gemfile.lock
-  # - vendor/bundle
+  - vendor/bundle
 kramdown:
   input: GFM
   auto_ids: true
